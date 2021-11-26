@@ -1,8 +1,7 @@
 import 'dart:math';
 import 'dart:ui' as ui;
 
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+
 import 'package:flutter/material.dart';
 import 'package:mp_chart/mp/chart/bar_chart.dart';
 import 'package:mp_chart/mp/controller/bar_chart_controller.dart';
@@ -26,6 +25,9 @@ import 'package:mp_chart/mp/core/chart_trans_listener.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
 import 'package:mp_chart/mp/core/value_formatter/day_axis_value_formatter.dart';
 import 'package:mp_chart/mp/core/value_formatter/my_value_formatter.dart';
+
+import '../action_state.dart';
+import '../util.dart';
 
 class BarChartBasic extends StatefulWidget {
   @override

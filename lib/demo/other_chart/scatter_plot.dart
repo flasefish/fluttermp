@@ -19,8 +19,8 @@ import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/render/i_shape_renderer.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class OtherChartScatterPlot extends StatefulWidget {
   @override

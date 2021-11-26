@@ -26,8 +26,9 @@ import 'package:mp_chart/mp/core/data_set/scatter_data_set.dart';
 import 'package:mp_chart/mp/core/enums/axis_dependency.dart';
 import 'package:mp_chart/mp/core/enums/mode.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/util.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import 'util.dart';
 
 PopupMenuItem item(String text, String id) {
   return PopupMenuItem<String>(

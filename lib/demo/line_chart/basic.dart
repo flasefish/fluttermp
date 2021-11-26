@@ -14,8 +14,8 @@ import 'package:mp_chart/mp/core/enums/limit_label_postion.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/limit_line.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class LineChartBasic extends StatefulWidget {
   @override

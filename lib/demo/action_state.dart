@@ -135,7 +135,6 @@ abstract class LineActionState<T extends StatefulWidget>
           item('Animate X', 'L'),
           item('Animate Y', 'M'),
           item('Animate XY', 'N'),
-          item('Save to Gallery', 'O'),
         ];
   }
 
@@ -251,11 +250,6 @@ abstract class LineActionState<T extends StatefulWidget>
           ..reset()
           ..animateXY1(2000, 2000);
         break;
-      case 'O':
-        captureImg(() {
-          controller.state.capture();
-        });
-        break;
     }
   }
 }
@@ -276,7 +270,6 @@ abstract class BarActionState<T extends StatefulWidget> extends ActionState<T> {
           item('Animate X', 'H'),
           item('Animate Y', 'I'),
           item('Animate XY', 'J'),
-          item('Save to Gallery', 'K'),
         ];
   }
 
@@ -338,11 +331,6 @@ abstract class BarActionState<T extends StatefulWidget> extends ActionState<T> {
         controller.animator
           ..reset()
           ..animateXY1(2000, 2000);
-        break;
-      case 'K':
-        captureImg(() {
-          controller.state.capture();
-        });
         break;
     }
   }
@@ -365,7 +353,6 @@ abstract class HorizontalBarActionState<T extends StatefulWidget>
           item('Animate X', 'H'),
           item('Animate Y', 'I'),
           item('Animate XY', 'J'),
-          item('Save to Gallery', 'K'),
         ];
   }
 
@@ -427,11 +414,6 @@ abstract class HorizontalBarActionState<T extends StatefulWidget>
         controller.animator
           ..reset()
           ..animateXY1(2000, 2000);
-        break;
-      case 'K':
-        captureImg(() {
-          controller.state.capture();
-        });
         break;
     }
   }
@@ -456,7 +438,6 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
           item('Animate X', 'K'),
           item('Animate Y', 'L'),
           item('Animate XY', 'M'),
-          item('Save to Gallery', 'N'),
         ];
   }
 
@@ -535,11 +516,6 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
         controller.animator
           ..reset()
           ..animateXY1(1400, 1400);
-        break;
-      case 'N':
-        captureImg(() {
-          controller.state.capture();
-        });
         break;
     }
   }
@@ -620,7 +596,6 @@ abstract class ScatterActionState<T extends StatefulWidget>
           item('Animate XY', 'G'),
           item('Toggle PinchZoom', 'H'),
           item('Toggle Auto Scale', 'I'),
-          item('Save to Gallery', 'J'),
         ];
   }
 
@@ -677,11 +652,6 @@ abstract class ScatterActionState<T extends StatefulWidget>
         controller.autoScaleMinMaxEnabled = !controller.autoScaleMinMaxEnabled;
         controller.state.setStateIfNotDispose();
         break;
-      case 'J':
-        captureImg(() {
-          controller.state.capture();
-        });
-        break;
     }
   }
 }
@@ -702,7 +672,6 @@ abstract class BubbleActionState<T extends StatefulWidget>
           item('Animate X', 'E'),
           item('Animate Y', 'F'),
           item('Animate XY', 'G'),
-          item('Save to Gallery', 'J'),
         ];
   }
 
@@ -755,11 +724,6 @@ abstract class BubbleActionState<T extends StatefulWidget>
       case 'I':
         controller.autoScaleMinMaxEnabled = !controller.autoScaleMinMaxEnabled;
         controller.state.setStateIfNotDispose();
-        break;
-      case 'J':
-        captureImg(() {
-          controller.state.capture();
-        });
         break;
     }
   }
@@ -782,7 +746,6 @@ abstract class CandlestickActionState<T extends StatefulWidget>
           item('Animate X', 'E'),
           item('Animate Y', 'F'),
           item('Animate XY', 'G'),
-          item('Save to Gallery', 'J'),
         ];
   }
 
@@ -837,11 +800,6 @@ abstract class CandlestickActionState<T extends StatefulWidget>
         controller.state.setStateIfNotDispose();
         break;
       case 'J':
-        captureImg(() {
-          controller.state.capture();
-        });
-        break;
-      case 'K':
         for (ICandleDataSet set in controller.data.dataSets) {
           (set as CandleDataSet)
               .setShadowColorSameAsCandle(!set.getShadowColorSameAsCandle());
@@ -872,7 +830,6 @@ abstract class RadarActionState<T extends StatefulWidget>
           item('Animate X', 'K'),
           item('Animate Y', 'L'),
           item('Animate XY', 'M'),
-          item('Save to Gallery', 'N'),
         ];
   }
 
@@ -953,11 +910,6 @@ abstract class RadarActionState<T extends StatefulWidget>
         controller.animator
           ..reset()
           ..animateXY1(1400, 1400);
-        break;
-      case 'N':
-        captureImg(() {
-          controller.state.capture();
-        });
         break;
     }
   }

@@ -60,8 +60,7 @@ class EvenMoreRealtimeState extends ActionState<EvenMoreRealtime>
       item('Add Entry', 'B'),
       item('Clear Chart', 'C'),
       item('Add Multiple', 'D'),
-      item('Save to Gallery', 'E'),
-      item('Update Random Single Entry', 'F'),
+      item('Update Random Single Entry', 'E'),
     ];
   }
 
@@ -93,11 +92,6 @@ class EvenMoreRealtimeState extends ActionState<EvenMoreRealtime>
         controller.state.setStateIfNotDispose();
         break;
       case 'E':
-        captureImg(() {
-          controller.state.capture();
-        });
-        break;
-      case 'F':
         _updateEntry();
         break;
     }

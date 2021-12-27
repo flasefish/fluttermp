@@ -25,13 +25,13 @@ class BarBuffer extends AbstractBuffer<IBarDataSet> {
   }
 
   void addBar(double left, double top, double right, double bottom) {
-    buffer[index] = left;
+    buffer![index] = left;
     index += 1;
-    buffer[index] = top;
+    buffer![index] = top;
     index += 1;
-    buffer[index] = right;
+    buffer![index] = right;
     index += 1;
-    buffer[index] = bottom;
+    buffer![index] = bottom;
     index += 1;
   }
 
@@ -45,20 +45,20 @@ class BarBuffer extends AbstractBuffer<IBarDataSet> {
 
       if (e == null) continue;
 
-      double x = e.x;
-      double y = e.y;
-      List<double> vals = e.yVals;
+      double? x = e.x;
+      double? y = e.y;
+      List<double>? vals = e.yVals;
 
       if (!_containsStacks || vals == null) {
-        double left = x - barWidthHalf;
-        double right = x + barWidthHalf;
+        double left = x! - barWidthHalf;
+        double right = x! + barWidthHalf;
         double bottom, top;
 
         if (_inverted) {
-          bottom = y >= 0 ? y : 0;
+          bottom = y! >= 0 ? y : 0;
           top = y <= 0 ? y : 0;
         } else {
-          top = y >= 0 ? y : 0;
+          top = y! >= 0 ? y : 0;
           bottom = y <= 0 ? y : 0;
         }
 
@@ -71,7 +71,7 @@ class BarBuffer extends AbstractBuffer<IBarDataSet> {
         addBar(left, top, right, bottom);
       } else {
         double posY = 0.0;
-        double negY = -e.negativeSum;
+        double negY = -e.negativeSum!;
         double yStart = 0.0;
 
         // fill the stack
@@ -92,7 +92,7 @@ class BarBuffer extends AbstractBuffer<IBarDataSet> {
             negY += value.abs();
           }
 
-          double left = x - barWidthHalf;
+          double left = x! - barWidthHalf;
           double right = x + barWidthHalf;
           double bottom, top;
 

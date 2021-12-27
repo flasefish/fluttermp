@@ -26,7 +26,7 @@ abstract class ValueFormatter {
   }
 
   String getBarLabel(BarEntry barEntry) {
-    return getFormattedValue1(barEntry.y);
+    return getFormattedValue1(barEntry.y!);
   }
 
   String getBarStackedLabel(double value, BarEntry stackedEntry) {
@@ -34,7 +34,7 @@ abstract class ValueFormatter {
   }
 
   String getPointLabel(Entry entry) {
-    return getFormattedValue1(entry.y);
+    return getFormattedValue1(entry.y!);
   }
 
   String getPieLabel(double value, PieEntry pieEntry) {
@@ -42,11 +42,11 @@ abstract class ValueFormatter {
   }
 
   String getRadarLabel(RadarEntry radarEntry) {
-    return getFormattedValue1(radarEntry.getValue());
+    return getFormattedValue1(radarEntry.getValue()!);
   }
 
   String getBubbleLabel(BubbleEntry bubbleEntry) {
-    return getFormattedValue1(bubbleEntry.size);
+    return getFormattedValue1(bubbleEntry.size!);
   }
 
   String getCandleLabel(CandleEntry candleEntry) {

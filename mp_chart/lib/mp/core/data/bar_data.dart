@@ -25,14 +25,14 @@ class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
   /// @param groupSpace the space between groups of bars in values (not pixels) e.g. 0.8f for bar width 1f
   /// @param barSpace   the space between individual bars in values (not pixels) e.g. 0.1f for bar width 1f
   void groupBars(double fromX, double groupSpace, double barSpace) {
-    int setCount = dataSets.length;
+    int setCount = dataSets!.length;
     if (setCount <= 1) {
       throw Exception(
           "BarData needs to hold at least 2 BarDataSets to allow grouping.");
     }
 
-    IBarDataSet max = getMaxEntryCountSet();
-    int maxEntryCount = max.getEntryCount();
+    IBarDataSet? max = getMaxEntryCountSet();
+    int maxEntryCount = max!.getEntryCount();
 
     double groupSpaceWidthHalf = groupSpace / 2.0;
     double barSpaceHalf = barSpace / 2.0;
@@ -44,7 +44,7 @@ class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
       double start = fromX;
       fromX += groupSpaceWidthHalf;
 
-      for (IBarDataSet set in dataSets) {
+      for (IBarDataSet set in dataSets!) {
         fromX += barSpaceHalf;
         fromX += barWidthHalf;
 
@@ -80,6 +80,6 @@ class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
   /// @param barSpace
   /// @return
   double getGroupWidth(double groupSpace, double barSpace) {
-    return dataSets.length * (_barWidth + barSpace) + groupSpace;
+    return dataSets!.length * (_barWidth + barSpace) + groupSpace;
   }
 }

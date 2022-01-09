@@ -8,20 +8,20 @@ mixin IScatterDataSet implements ILineScatterCandleRadarDataSet<Entry> {
   /// Returns the currently set scatter shape size
   ///
   /// @return
-  double getScatterShapeSize();
+  double? getScatterShapeSize();
 
   /// Returns radius of the hole in the shape
   ///
   /// @return
-  double getScatterShapeHoleRadius();
+  double? getScatterShapeHoleRadius();
 
   /// Returns the color for the hole in the shape
   ///
   /// @return
-  Color getScatterShapeHoleColor();
+  Color? getScatterShapeHoleColor();
 
   /// Returns the IShapeRenderer responsible for rendering this DataSet.
   ///
   /// @return
-  IShapeRenderer getShapeRenderer();
+  IShapeRenderer? getShapeRenderer();
 }

@@ -23,8 +23,7 @@ import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
 
 abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
-    extends CustomPainter
-    implements ChartInterface {
+    extends CustomPainter implements ChartInterface {
   /// object that holds all data that was originally set for the chart, before
   /// it was modified or any filtering algorithms had been applied
   final T? _data;
@@ -66,7 +65,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
   final Color? _infoBackgroundColor;
 
   /// the object representing the labels on the x-axis
-  final XAxis _xAxis;
+  final XAxis? _xAxis;
 
   /// the legend object containing all data associated with the legend
   final Legend? _legend;
@@ -231,8 +230,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
 
     if (!_isInit) {
       canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height),
-          Paint()
-            ..color = _infoBackgroundColor!);
+          Paint()..color = _infoBackgroundColor!);
       MPPointF c = getCenter(size);
       _infoPaint!.layout();
       _infoPaint!.paint(canvas,
@@ -334,8 +332,8 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
   /// @param y The y-value to highlight. Supply `NaN` for "any"
   /// @param dataSetIndex The dataset index to search in
   /// @param callListener Should the listener be called for this change
-  void highlightValue4(double x, double y, int dataSetIndex,
-      bool callListener) {
+  void highlightValue4(
+      double x, double y, int dataSetIndex, bool callListener) {
     if (dataSetIndex < 0 || dataSetIndex >= _data!.getDataSetCount()) {
       highlightValue6(null, callListener);
     } else {
@@ -418,9 +416,9 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
       IDataSet set = _data!.getDataSetByIndex(highlight.dataSetIndex)!;
 
       Entry? e = _data!.getEntryForHighlight(_indicesToHighlight![i]);
-      int entryIndex = set.getEntryIndex2(e);
       // make sure entry not null
-      if (e == null || entryIndex > set.getEntryCount() * _animator.getPhaseX())
+      if (e == null ||
+          set.getEntryIndex2(e) > set.getEntryCount() * _animator!.getPhaseX())
         continue;
 
       List<double?> pos = getMarkerPosition(highlight);

@@ -13,34 +13,34 @@ mixin IBarDataSet implements IBarLineScatterCandleBubbleDataSet<BarEntry> {
   /// this DataSet. This should return 1 for non stacked bars, and > 1 for stacked bars.
   ///
   /// @return
-  int getStackSize();
+  int? getStackSize();
 
   /// Returns the color used for drawing the bar-shadows. The bar shadows is a
   /// surface behind the bar that indicates the maximum value.
   ///
   /// @return
-  Color getBarShadowColor();
+  Color? getBarShadowColor();
 
   /// Returns the width used for drawing borders around the bars.
   /// If borderWidth == 0, no border will be drawn.
   ///
   /// @return
-  double getBarBorderWidth();
+  double? getBarBorderWidth();
 
   /// Returns the color drawing borders around the bars.
   ///
   /// @return
-  Color getBarBorderColor();
+  Color? getBarBorderColor();
 
   /// Returns the alpha value (transparency) that is used for drawing the
   /// highlight indicator.
   ///
   /// @return
-  int getHighLightAlpha();
+  int? getHighLightAlpha();
 
   /// Returns the labels used for the different value-stacks in the legend.
   /// This is only relevant for stacked bar entries.
   ///
   /// @return
-  List<String> getStackLabels();
+  List<String>? getStackLabels();
 }

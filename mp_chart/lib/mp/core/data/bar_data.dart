@@ -4,15 +4,15 @@ import 'package:mp_chart/mp/core/entry/bar_entry.dart';
 
 class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
   /// the width of the bars on the x-axis, in values (not pixels)
-  double _barWidth = 0.85;
+  double? _barWidth = 0.85;
 
   BarData(List<IBarDataSet> dataSets) : super.fromList(dataSets);
 
   // ignore: unnecessary_getters_setters
-  double get barWidth => _barWidth;
+  double? get barWidth => _barWidth;
 
   // ignore: unnecessary_getters_setters
-  set barWidth(double value) {
+  set barWidth(double? value) {
     _barWidth = value;
   }
 
@@ -32,11 +32,11 @@ class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
     }
 
     IBarDataSet? max = getMaxEntryCountSet();
-    int maxEntryCount = max!.getEntryCount();
+    int? maxEntryCount = max!.getEntryCount();
 
     double groupSpaceWidthHalf = groupSpace / 2.0;
     double barSpaceHalf = barSpace / 2.0;
-    double barWidthHalf = _barWidth / 2.0;
+    double barWidthHalf = _barWidth! / 2.0;
 
     double interval = getGroupWidth(groupSpace, barSpace);
 
@@ -49,7 +49,7 @@ class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
         fromX += barWidthHalf;
 
         if (i < set.getEntryCount()) {
-          BarEntry entry = set.getEntryForIndex(i);
+          BarEntry? entry = set.getEntryForIndex(i);
 
           if (entry != null) {
             entry.x = fromX;
@@ -80,6 +80,6 @@ class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
   /// @param barSpace
   /// @return
   double getGroupWidth(double groupSpace, double barSpace) {
-    return dataSets!.length * (_barWidth + barSpace) + groupSpace;
+    return dataSets!.length * (_barWidth! + barSpace) + groupSpace;
   }
 }

@@ -11,7 +11,7 @@ import 'package:mp_chart/mp/core/highlight/highlight.dart';
 
 class CombinedData extends BarLineScatterCandleBubbleData<
     IBarLineScatterCandleBubbleDataSet<Entry>> {
-  LineData? _lineData;
+  LineData ?_lineData;
   BarData? _barData;
   ScatterData? _scatterData;
   CandleData? _candleData;
@@ -66,7 +66,7 @@ class CombinedData extends BarLineScatterCandleBubbleData<
     for (ChartData data in allData) {
       data.calcMinMax1();
 
-      List<IBarLineScatterCandleBubbleDataSet<Entry>> sets = data.dataSets as List<IBarLineScatterCandleBubbleDataSet<Entry>>;
+      List<IBarLineScatterCandleBubbleDataSet<Entry>> sets = data.dataSets as List<IBarLineScatterCandleBubbleDataSet<Entry>> ;
       dataSets!.addAll(sets);
 
       if (data.getYMax1()! > yMax!) yMax = data.getYMax1();
@@ -112,7 +112,7 @@ class CombinedData extends BarLineScatterCandleBubbleData<
   /// @return
   List<BarLineScatterCandleBubbleData> getAllData() {
     List<BarLineScatterCandleBubbleData> data =
-        [];
+        <BarLineScatterCandleBubbleData>[];
     if (_lineData != null) data.add(_lineData!);
     if (_barData != null) data.add(_barData!);
     if (_scatterData != null) data.add(_scatterData!);
@@ -148,16 +148,16 @@ class CombinedData extends BarLineScatterCandleBubbleData<
 
     ChartData data = getDataByIndex(highlight.dataIndex);
 
-    if (highlight.dataSetIndex >= data.getDataSetCount()) return null;
+    if (highlight.dataSetIndex! >= data.getDataSetCount()) return null;
 
     // The value of the highlighted entry could be NaN -
     //   if we are not interested in highlighting a specific value.
 
     List<Entry> entries = data
         .getDataSetByIndex(highlight.dataSetIndex)!
-        .getEntriesForXValue(highlight.x);
+        .getEntriesForXValue(highlight!.x!);
     for (Entry entry in entries)
-      if (entry.y == highlight.y || highlight.y.isNaN) return entry;
+      if (entry.y == highlight.y || highlight.y!.isNaN) return entry;
 
     return null;
   }
@@ -173,13 +173,13 @@ class CombinedData extends BarLineScatterCandleBubbleData<
 
     BarLineScatterCandleBubbleData data = getDataByIndex(highlight.dataIndex);
 
-    if (highlight.dataSetIndex >= data.getDataSetCount()) return null;
+    if (highlight.dataSetIndex! >= data.getDataSetCount()) return null;
 
-    return data.dataSets![highlight.dataSetIndex];
+    return data.dataSets![highlight!.dataSetIndex!];
   }
 
   int getDataIndex(ChartData data) {
-    return getAllData().indexOf(data as BarLineScatterCandleBubbleData);
+    return getAllData().indexOf(data as  BarLineScatterCandleBubbleData<IBarLineScatterCandleBubbleDataSet<Entry>>);
   }
 
   @override

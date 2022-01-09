@@ -9,7 +9,7 @@ mixin IPieDataSet implements IDataSet<PieEntry> {
   /// DataSet, in pixels.
   ///
   /// @return
-  double getSliceSpace();
+  double? getSliceSpace();
 
   /// When enabled, slice spacing will be 0.0 when the smallest value is going to be
   ///   smaller than the slice spacing itself.
@@ -21,11 +21,11 @@ mixin IPieDataSet implements IDataSet<PieEntry> {
   /// the chart-center in dp.
   ///
   /// @return
-  double getSelectionShift();
+  double? getSelectionShift();
 
-  ValuePosition getXValuePosition();
+  ValuePosition? getXValuePosition();
 
-  ValuePosition getYValuePosition();
+  ValuePosition? getYValuePosition();
 
   /// When valuePosition is OutsideSlice, use slice colors as line color if true
   /// */
@@ -33,23 +33,23 @@ mixin IPieDataSet implements IDataSet<PieEntry> {
 
   /// When valuePosition is OutsideSlice, indicates line color
   /// */
-  Color getValueLineColor();
+  Color? getValueLineColor();
 
   ///  When valuePosition is OutsideSlice, indicates line width
   ///  */
-  double getValueLineWidth();
+  double? getValueLineWidth();
 
   /// When valuePosition is OutsideSlice, indicates offset as percentage out of the slice size
   /// */
-  double getValueLinePart1OffsetPercentage();
+  double? getValueLinePart1OffsetPercentage();
 
   /// When valuePosition is OutsideSlice, indicates length of first half of the line
   /// */
-  double getValueLinePart1Length();
+  double? getValueLinePart1Length();
 
   /// When valuePosition is OutsideSlice, indicates length of second half of the line
   /// */
-  double getValueLinePart2Length();
+  double? getValueLinePart2Length();
 
   /// When valuePosition is OutsideSlice, this allows variable line length
   /// */

@@ -8,5 +8,5 @@ mixin IBarLineScatterCandleBubbleDataSet<T extends Entry>
   /// Returns the color that is used for drawing the highlight indicators.
   ///
   /// @return
-  Color getHighLightColor();
+  Color? getHighLightColor();
 }

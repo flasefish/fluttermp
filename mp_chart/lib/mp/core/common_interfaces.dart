@@ -72,5 +72,5 @@ mixin OnChartValueSelectedListener {
 mixin AnimatorUpdateListener {
   void onAnimationUpdate(double x, double y);
 
-  void onRotateUpdate(double angle);
+  void onRotateUpdate(double? angle);
 }

@@ -51,9 +51,9 @@ class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry>
 
   @override
   DataSet<CandleEntry> copy1() {
-    List<CandleEntry> entries = List<CandleEntry>();
-    for (int i = 0; i < values.length; i++) {
-      entries.add(values[i].copy());
+    List<CandleEntry> entries = [];
+    for (int i = 0; i < values!.length; i++) {
+      entries.add(values![i]!.copy());
     }
     CandleDataSet copied = CandleDataSet(entries, getLabel());
     copy(copied);
@@ -79,23 +79,23 @@ class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry>
   }
 
   @override
-  void calcMinMax1(CandleEntry e) {
-    if (e.shadowLow < getYMin()) yMin = e.shadowLow;
+  void calcMinMax1(CandleEntry? e) {
+    if (e!.shadowLow < getYMin()!) yMin = e.shadowLow;
 
-    if (e.shadowHigh > getYMax()) yMax = e.shadowHigh;
+    if (e!.shadowHigh > getYMax()!) yMax = e.shadowHigh;
 
     calcMinMaxX1(e);
   }
 
   @override
   void calcMinMaxY1(CandleEntry e) {
-    if (e.shadowHigh < getYMin()) yMin = e.shadowHigh;
+    if (e.shadowHigh < getYMin()!) yMin = e.shadowHigh;
 
-    if (e.shadowHigh > getYMax()) yMax = e.shadowHigh;
+    if (e.shadowHigh > getYMax()!) yMax = e.shadowHigh;
 
-    if (e.shadowLow < getYMin()) yMin = e.shadowLow;
+    if (e.shadowLow < getYMin()!) yMin = e.shadowLow;
 
-    if (e.shadowLow > getYMax()) yMax = e.shadowLow;
+    if (e.shadowLow > getYMax()!) yMax = e.shadowLow;
   }
 
   /// Sets the space that is left out on the left and right side of each
@@ -228,7 +228,7 @@ class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry>
   }
 
   @override
-  DashPathEffect getDashPathEffectHighlight() {
+  DashPathEffect? getDashPathEffectHighlight() {
     return null;
   }
 }

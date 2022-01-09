@@ -4,7 +4,7 @@ import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/highlight/highlight.dart';
 
 class RadarData extends ChartData<IRadarDataSet> {
-  List<String>? _labels;
+  List<String> ?_labels;
 
   RadarData() : super();
 
@@ -14,13 +14,13 @@ class RadarData extends ChartData<IRadarDataSet> {
   List<String>? get labels => _labels;
 
   // ignore: unnecessary_getters_setters
-  set labels(List<String>? value) {
+  set labels(List<String> ?value) {
     _labels = value;
   }
 
   @override
-  Entry getEntryForHighlight(Highlight highlight) {
+  Entry? getEntryForHighlight(Highlight highlight) {
     return getDataSetByIndex(highlight.dataSetIndex)!
-        .getEntryForIndex(highlight.x.toInt());
+        .getEntryForIndex(highlight.x!.toInt());
   }
 }

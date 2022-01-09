@@ -95,7 +95,7 @@ class Transformer {
     List<double?> valuePoints = _valuePointsForGenerateTransformedValuesScatter;
 
     for (int j = 0; j < count; j += 2) {
-      Entry e = data.getEntryForIndex(j ~/ 2 + from);
+      Entry? e = data.getEntryForIndex(j ~/ 2 + from);
 
       if (e != null) {
         valuePoints[j] = e.x;
@@ -129,7 +129,7 @@ class Transformer {
     List<double?> valuePoints = _valuePointsForGenerateTransformedValuesBubble;
 
     for (int j = 0; j < count; j += 2) {
-      Entry e = data.getEntryForIndex(j ~/ 2 + from);
+      Entry? e = data.getEntryForIndex(j ~/ 2 + from);
 
       if (e != null) {
         valuePoints[j] = e.x;
@@ -196,7 +196,7 @@ class Transformer {
     List<double?> valuePoints = _valuePointsForGenerateTransformedValuesCandle;
 
     for (int j = 0; j < count; j += 2) {
-      CandleEntry e = data.getEntryForIndex(j ~/ 2 + from);
+      CandleEntry? e = data.getEntryForIndex(j ~/ 2 + from);
 
       if (e != null) {
         valuePoints[j] = e.x;

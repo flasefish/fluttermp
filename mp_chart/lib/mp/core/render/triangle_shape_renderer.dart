@@ -17,14 +17,14 @@ class TriangleShapeRenderer implements IShapeRenderer {
       double posX,
       double posY,
       Paint renderPaint) {
-    final double shapeSize = dataSet.getScatterShapeSize();
+    final double shapeSize = dataSet.getScatterShapeSize()!;
     final double shapeHalf = shapeSize / 2;
     final double shapeHoleSizeHalf =
-        Utils.convertDpToPixel(dataSet.getScatterShapeHoleRadius());
+        Utils.convertDpToPixel(dataSet.getScatterShapeHoleRadius()!);
     final double shapeHoleSize = shapeHoleSizeHalf * 2.0;
     final double shapeStrokeSize = (shapeSize - shapeHoleSize) / 2.0;
 
-    final Color shapeHoleColor = dataSet.getScatterShapeHoleColor();
+    final Color shapeHoleColor = dataSet.getScatterShapeHoleColor()!;
 
     renderPaint.style = PaintingStyle.fill;
 

@@ -25,21 +25,21 @@ class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry>
   }
 
   @override
-  void calcMinMax1(BubbleEntry e) {
+  void calcMinMax1(BubbleEntry? e) {
     super.calcMinMax1(e);
 
-    final double size = e.size;
+    final double? size = e!.size;
 
-    if (size > _maxSize) {
+    if (size! > _maxSize) {
       _maxSize = size;
     }
   }
 
   @override
   DataSet<BubbleEntry> copy1() {
-    List<BubbleEntry> entries = List<BubbleEntry>();
-    for (int i = 0; i < values.length; i++) {
-      entries.add(values[i].copy());
+    List<BubbleEntry> entries = [];
+    for (int i = 0; i < values!.length; i++) {
+      entries.add(values![i]!.copy());
     }
     BubbleDataSet copied = BubbleDataSet(entries, getLabel());
     copy(copied);

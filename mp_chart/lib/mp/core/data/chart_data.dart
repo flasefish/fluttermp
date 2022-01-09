@@ -251,8 +251,8 @@ class ChartData<T extends IDataSet<Entry>> {
     if (highlight.dataSetIndex! >= _dataSets!.length)
       return null;
     else {
-      return _dataSets![highlight.dataSetIndex!]
-          .getEntryForXValue2(highlight.x, highlight.y);
+      return _dataSets![highlight!.dataSetIndex!]
+          .getEntryForXValue2(highlight!.x!, highlight!.y!);
     }
   }
 

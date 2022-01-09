@@ -18,12 +18,12 @@ class PercentFormatter extends ValueFormatter {
   }
 
   @override
-  String getFormattedValue1(double value) {
+  String getFormattedValue1(double? value) {
     return _format.format(value) + (_percentSignSeparated ? " %" : "%");
   }
 
   @override
-  String getPieLabel(double value, PieEntry pieEntry) {
+  String getPieLabel(double? value, PieEntry pieEntry) {
     if (_controller != null &&
         _controller.painter != null &&
         _controller.painter.isUsePercentValuesEnabled()) {

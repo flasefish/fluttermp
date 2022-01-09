@@ -43,8 +43,8 @@ class PieData extends ChartData<IPieDataSet> {
   }
 
   @override
-  Entry getEntryForHighlight(Highlight highlight) {
-    return getDataSet().getEntryForIndex(highlight.x.toInt());
+  Entry? getEntryForHighlight(Highlight highlight) {
+    return getDataSet().getEntryForIndex(highlight.x!.toInt());
   }
 
   /// Returns the sum of all values in this PieData object.
@@ -53,7 +53,7 @@ class PieData extends ChartData<IPieDataSet> {
   double getYValueSum() {
     double sum = 0;
     for (int i = 0; i < getDataSet().getEntryCount(); i++)
-      sum += getDataSet().getEntryForIndex(i).getValue()!;
+      sum += getDataSet().getEntryForIndex(i)!.getValue()!;
     return sum;
   }
 }

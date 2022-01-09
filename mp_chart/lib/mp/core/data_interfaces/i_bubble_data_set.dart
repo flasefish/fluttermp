@@ -9,11 +9,11 @@ mixin IBubbleDataSet
   /// @param width
   void setHighlightCircleWidth(double width);
 
-  double getMaxSize();
+  double? getMaxSize();
 
   bool isNormalizeSizeEnabled();
 
   /// Returns the width of the highlight-circle that surrounds the bubble
   /// @return
-  double getHighlightCircleWidth();
+  double? getHighlightCircleWidth();
 }

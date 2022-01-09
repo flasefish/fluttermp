@@ -14,7 +14,7 @@ class ChevronUpShapeRenderer implements IShapeRenderer {
       double posX,
       double posY,
       Paint renderPaint) {
-    final double shapeHalf = dataSet.getScatterShapeSize() / 2;
+    final double shapeHalf = dataSet!.getScatterShapeSize()! / 2;
 
     renderPaint
       ..style = PaintingStyle.stroke

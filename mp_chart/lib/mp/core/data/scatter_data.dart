@@ -14,9 +14,9 @@ class ScatterData extends BarLineScatterCandleBubbleData<IScatterDataSet> {
     double max = 0;
 
     for (IScatterDataSet set in dataSets!) {
-      double size = set.getScatterShapeSize();
+      double? size = set.getScatterShapeSize();
 
-      if (size > max) max = size;
+      if (size! > max) max = size;
     }
 
     return max;

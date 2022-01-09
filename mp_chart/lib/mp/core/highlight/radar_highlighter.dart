@@ -54,10 +54,10 @@ class RadarHighlighter extends PieRadarHighlighter<RadarChartPainter> {
 
       final Entry? entry = dataSet!.getEntryForIndex(index);
 
-      double? y = (entry!.y! - painter!.getYChartMin());
+      double? y = (entry!.y! - painter!.getYChartMin()!);
 
       Utils.getPosition(painter!.getCenterOffsets(), y * factor * phaseY,
-          sliceangle * index * phaseX + painter!.getRotationAngle(), pOut);
+          sliceangle * index * phaseX + painter!.getRotationAngle()!, pOut);
 
       highlightBuffer!.add(Highlight(
           x: index.toDouble(),

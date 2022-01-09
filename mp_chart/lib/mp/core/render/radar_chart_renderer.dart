@@ -22,8 +22,8 @@ class RadarChartRenderer extends LineRadarRenderer {
   Paint? _webPaint;
   Paint? _highlightCirclePaint;
 
-  RadarChartRenderer(RadarChartPainter chart, Animator animator,
-      ViewPortHandler viewPortHandler)
+  RadarChartRenderer(RadarChartPainter chart, Animator? animator,
+      ViewPortHandler? viewPortHandler)
       : super(animator, viewPortHandler) {
     _painter = chart;
 
@@ -93,8 +93,8 @@ class RadarChartRenderer extends LineRadarRenderer {
 
       Utils.getPosition(
           center,
-          (e!.y!- _painter!.getYChartMin()) * factor * phaseY,
-          sliceangle * j * phaseX + _painter!.getRotationAngle(),
+          (e!.y!- _painter!.getYChartMin()!) * factor * phaseY,
+          sliceangle * j * phaseX + _painter!.getRotationAngle()!,
           pOut);
 
       if (pOut.x.isNaN) continue;
@@ -182,8 +182,8 @@ class RadarChartRenderer extends LineRadarRenderer {
 
         Utils.getPosition(
             center,
-            (entry!.y! - _painter!.getYChartMin()) * factor * phaseY,
-            sliceangle * j * phaseX + _painter!.getRotationAngle(),
+            (entry!.y! - _painter!.getYChartMin()!) * factor * phaseY,
+            sliceangle * j * phaseX + _painter!.getRotationAngle()!,
             pOut);
 
         if (dataSet.isDrawValuesEnabled()) {
@@ -199,7 +199,7 @@ class RadarChartRenderer extends LineRadarRenderer {
 
         if (entry.mIcon != null && dataSet.isDrawIconsEnabled()) {
           Utils.getPosition(center, entry.y! * factor * phaseY + iconsOffset.y,
-              sliceangle * j * phaseX + _painter!.getRotationAngle(), pIcon);
+              sliceangle * j * phaseX + _painter!.getRotationAngle()!, pIcon);
 
           //noinspection SuspiciousNameCombination
           pIcon.y += iconsOffset.x;
@@ -238,25 +238,25 @@ class RadarChartRenderer extends LineRadarRenderer {
     // calculate the factor that is needed for transforming the value to
     // pixels
     double factor = _painter!.getFactor();
-    double rotationangle = _painter!.getRotationAngle();
+    double? rotationangle = _painter!.getRotationAngle();
 
     MPPointF center = _painter!.getCenterOffsets();
 
     // draw the web lines that come from the center
     var color = _painter!.webColor;
     _webPaint!
-      ..strokeWidth = _painter!.webLineWidth
+      ..strokeWidth = _painter!.webLineWidth!
       ..color =
-          Color.fromARGB(_painter!.webAlpha, color.red, color.green, color.blue);
+          Color.fromARGB(_painter!.webAlpha!, color!.red, color!.green, color!.blue);
 
-    final int xIncrements = 1 + _painter!.skipWebLineCount;
+    final int xIncrements = 1 + _painter!.skipWebLineCount!;
     int? maxEntryCount =
         _painter!.getData()!.getMaxEntryCountSet()!.getEntryCount();
 
     MPPointF p = MPPointF.getInstance1(0, 0);
     for (int i = 0; i < maxEntryCount; i += xIncrements) {
       Utils.getPosition(center, _painter!.yAxis!.axisRange * factor,
-          sliceangle * i + rotationangle, p);
+          sliceangle * i + rotationangle!, p);
 
       c.drawLine(Offset(center.x, center.y), Offset(p.x, p.y), _webPaint!);
     }
@@ -265,22 +265,22 @@ class RadarChartRenderer extends LineRadarRenderer {
     // draw the inner-web
     color = _painter!.webColorInner;
     _webPaint!
-      ..strokeWidth = _painter!.innerWebLineWidth
+      ..strokeWidth = _painter!.innerWebLineWidth!
       ..color =
-          Color.fromARGB(_painter!.webAlpha, color.red, color.green, color.blue);
+          Color.fromARGB(_painter!.webAlpha!, color!.red, color!.green, color!.blue);
 
-    int labelCount = _painter!.yAxis.entryCount;
+    int labelCount = _painter!.yAxis!.entryCount;
 
     MPPointF p1out = MPPointF.getInstance1(0, 0);
     MPPointF p2out = MPPointF.getInstance1(0, 0);
     for (int j = 0; j < labelCount; j++) {
       for (int i = 0; i < _painter!.getData()!.getEntryCount(); i++) {
         double r =
-            (_painter!.yAxis.entries[j]! - _painter!.getYChartMin()) * factor;
+            (_painter!.yAxis!.entries[j]! - _painter!.getYChartMin()!) * factor;
 
-        Utils.getPosition(center, r, sliceangle * i + rotationangle, p1out);
+        Utils.getPosition(center, r, sliceangle * i + rotationangle!, p1out);
         Utils.getPosition(
-            center, r, sliceangle * (i + 1) + rotationangle, p2out);
+            center, r, sliceangle * (i + 1) + rotationangle!, p2out);
 
         c.drawLine(
             Offset(p1out.x, p1out.y), Offset(p2out.x, p2out.y), _webPaint!);
@@ -312,13 +312,13 @@ class RadarChartRenderer extends LineRadarRenderer {
 
       if (!isInBoundsX(e, set)) continue;
 
-      double y = (e!.y! - _painter!.getYChartMin());
+      double y = (e!.y! - _painter!.getYChartMin()!);
 
       Utils.getPosition(
           center,
           y * factor * animator!.getPhaseY(),
           sliceangle * high!.x! * animator!.getPhaseX() +
-              _painter!.getRotationAngle(),
+              _painter!.getRotationAngle()!,
           pOut);
 
       high.setDraw(pOut.x, pOut.y);

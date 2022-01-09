@@ -39,7 +39,7 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
   @override
   void drawData(Canvas c) {
-    BubbleData bubbleData = _provider!.getBubbleData();
+    BubbleData? bubbleData = _provider!.getBubbleData();
 
     for (IBubbleDataSet set in bubbleData!.dataSets!) {
       if (set.isVisible()) drawDataSet(c, set);

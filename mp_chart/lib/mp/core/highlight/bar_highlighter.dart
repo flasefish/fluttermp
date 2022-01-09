@@ -25,7 +25,7 @@ class BarHighlighter extends ChartHighlighter<BarDataProvider> {
 
     BarData? barData = provider!.getBarData();
 
-    IBarDataSet? set = barData.getDataSetByIndex(high.dataSetIndex);
+    IBarDataSet? set = barData!.getDataSetByIndex(high.dataSetIndex);
     if (set!.isStacked()) {
       return getStackedHighlight(high, set, pos.x, pos.y);
     }

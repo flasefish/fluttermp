@@ -158,7 +158,7 @@ class YAxisRendererRadarChart extends YAxisRenderer {
     for (int j = from; j < to; j++) {
       double r = (yAxis!.entries[j]! - yAxis!.axisMinimum!) * factor;
 
-      Utils.getPosition(center, r, _painter!.getRotationAngle(), pOut);
+      Utils.getPosition(center, r, _painter!.getRotationAngle()!, pOut);
 
       String label = yAxis!.getFormattedLabel(j);
       axisLabelPaint = PainterUtils.create(
@@ -201,7 +201,7 @@ class YAxisRendererRadarChart extends YAxisRenderer {
         ..color = (l.lineColor)
         ..strokeWidth = l.lineWidth!;
 
-      double r = (l.limit - _painter!.getYChartMin()) * factor;
+      double r = (l.limit - _painter!.getYChartMin()!) * factor;
 
       Path limitPath = mRenderLimitLinesPathBuffer;
       limitPath.reset();
@@ -210,7 +210,7 @@ class YAxisRendererRadarChart extends YAxisRenderer {
           j < _painter!.getData()!.getMaxEntryCountSet()!.getEntryCount();
           j++) {
         Utils.getPosition(
-            center, r, sliceangle * j + _painter!.getRotationAngle(), pOut);
+            center, r, sliceangle * j + _painter!.getRotationAngle()!, pOut);
 
         if (j == 0)
           limitPath.moveTo(pOut.x, pOut.y);

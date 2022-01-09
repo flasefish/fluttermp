@@ -27,7 +27,7 @@ class CombinedHighlighter extends ChartHighlighter<CombinedDataProvider>
     highlightBuffer.clear();
 
     List<BarLineScatterCandleBubbleData> dataObjects =
-        provider!.getCombinedData().getAllData();
+        provider!.getCombinedData()!.getAllData();
 
     for (int i = 0; i < dataObjects.length; i++) {
       ChartData dataObject = dataObjects[i];

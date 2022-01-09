@@ -23,8 +23,8 @@ class CombinedChartRenderer extends DataRenderer {
 
   ChartPainter? _painter;
 
-  CombinedChartRenderer(CombinedChartPainter chart, Animator animator,
-      ViewPortHandler viewPortHandler)
+  CombinedChartRenderer(CombinedChartPainter chart, Animator? animator,
+      ViewPortHandler? viewPortHandler)
       : super(animator, viewPortHandler) {
     _painter = chart;
     createRenderers();
@@ -38,9 +38,9 @@ class CombinedChartRenderer extends DataRenderer {
     CombinedChartPainter chart = (_painter as CombinedChartPainter);
     if (chart == null) return;
 
-    List<DrawOrder> orders = chart.getDrawOrder();
+    List<DrawOrder>? orders = chart.getDrawOrder();
 
-    for (DrawOrder order in orders) {
+    for (DrawOrder order in orders!) {
       switch (order) {
         case DrawOrder.BAR:
           if (chart.getBarData() != null)

@@ -13,14 +13,14 @@ class HorizontalBarHighlighter extends BarHighlighter {
 
   @override
   Highlight? getHighlight(double x, double y) {
-    BarData barData = provider!.getBarData();
+    BarData? barData = provider!.getBarData();
 
     MPPointD pos = getValsForTouch(y, x);
 
     Highlight? high = getHighlightForX(pos.y, y, x);
     if (high == null) return null;
 
-    IBarDataSet? set = barData.getDataSetByIndex(high.dataSetIndex);
+    IBarDataSet? set = barData!.getDataSetByIndex(high.dataSetIndex);
     if (set!.isStacked()) {
       return getStackedHighlight(high, set, pos.y, pos.x);
     }

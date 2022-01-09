@@ -35,7 +35,7 @@ class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
 
   @override
   void drawData(Canvas c) {
-    ScatterData scatterData = _provider!.getScatterData();
+    ScatterData? scatterData = _provider!.getScatterData();
 
     for (IScatterDataSet set in scatterData!.dataSets!) {
       if (set.isVisible()) drawDataSet(c, set);
@@ -82,9 +82,9 @@ class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
   void drawValues(Canvas c) {
     // if values are drawn
     if (isDrawingValuesAllowed(_provider!)) {
-      List<IScatterDataSet>? dataSets = _provider!.getScatterData().dataSets;
+      List<IScatterDataSet>? dataSets = _provider!.getScatterData()!.dataSets;
 
-      for (int i = 0; i < _provider!.getScatterData().getDataSetCount(); i++) {
+      for (int i = 0; i < _provider!.getScatterData()!.getDataSetCount(); i++) {
         IScatterDataSet? dataSet = dataSets![i];
 
         if (!shouldDrawValues(dataSet) || dataSet.getEntryCount() < 1) continue;
@@ -159,7 +159,7 @@ class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
 
   @override
   void drawHighlighted(Canvas c, List<Highlight>? indices) {
-    ScatterData scatterData = _provider!.getScatterData();
+    ScatterData? scatterData = _provider!.getScatterData();
 
     for (Highlight high in indices!) {
       IScatterDataSet? set = scatterData!.getDataSetByIndex!(high.dataSetIndex);

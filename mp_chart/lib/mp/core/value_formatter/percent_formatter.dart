@@ -26,7 +26,7 @@ class PercentFormatter extends ValueFormatter {
   String getPieLabel(double? value, PieEntry pieEntry) {
     if (_controller != null &&
         _controller.painter != null &&
-        _controller.painter.isUsePercentValuesEnabled()) {
+        _controller.painter!.isUsePercentValuesEnabled()) {
       // Converted to percent
       return getFormattedValue1(value);
     } else {

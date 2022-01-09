@@ -22,19 +22,19 @@ import 'package:mp_chart/mp/core/utils/utils.dart';
 
 class HorizontalBarChartRenderer extends BarChartRenderer {
   HorizontalBarChartRenderer(
-      BarDataProvider chart, Animator animator, ViewPortHandler viewPortHandler)
+      BarDataProvider chart, Animator? animator, ViewPortHandler? viewPortHandler)
       : super(chart, animator, viewPortHandler);
 
   @override
   void initBuffers() {
-    BarData ?barData = provider!.getBarData();
-    barBuffers = List.filled(barData.getDataSetCount(),null);
+    BarData? barData = provider!.getBarData();
+    barBuffers = List.filled(barData!.getDataSetCount(),null);
 
     for (int i = 0; i < barBuffers!.length; i++) {
-      IBarDataSet? set = barData.getDataSetByIndex(i);
+      IBarDataSet? set = barData!.getDataSetByIndex(i);
       barBuffers![i] = HorizontalBarBuffer(
           set!.getEntryCount() * 4 * (set!.isStacked() ? set!.getStackSize()! : 1),
-          barData.getDataSetCount(),
+          barData!.getDataSetCount(),
           set.isStacked());
     }
   }
@@ -58,7 +58,7 @@ class HorizontalBarChartRenderer extends BarChartRenderer {
     if (provider!.isDrawBarShadowEnabled()) {
       shadowPaint?..color = dataSet!.getBarShadowColor()!;
 
-      BarData barData = provider!.getBarData();
+      BarData? barData = provider!.getBarData();
 
       final double? barWidth = barData!.barWidth;
       final double barWidthHalf = barWidth! / 2.0;
@@ -140,14 +140,14 @@ class HorizontalBarChartRenderer extends BarChartRenderer {
     // if values are drawn
     if (!isDrawingValuesAllowed(provider!)) return;
 
-    List<IBarDataSet>? dataSets = provider!.getBarData().dataSets;
+    List<IBarDataSet>? dataSets = provider!.getBarData()!.dataSets;
 
     final double valueOffsetPlus = Utils.convertDpToPixel(5);
     double posOffset = 0;
     double negOffset = 0;
     final bool drawValueAboveBar = provider!.isDrawValueAboveBarEnabled();
 
-    for (int i = 0; i < provider!.getBarData().getDataSetCount(); i++) {
+    for (int i = 0; i < provider!.getBarData()!.getDataSetCount(); i++) {
       IBarDataSet? dataSet = dataSets![i];
 
       if (!shouldDrawValues(dataSet)) continue;

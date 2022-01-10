@@ -23,7 +23,7 @@ class BarChartSine extends StatefulWidget {
 }
 
 class BarChartSineState extends BarActionState<BarChartSine> {
-  List<BarEntry> _data;
+  List<BarEntry> _data = [];
   var random = Random(1);
   int _count = 150;
 
@@ -31,7 +31,7 @@ class BarChartSineState extends BarActionState<BarChartSine> {
   void initState() {
     _initController();
     Util.loadAsset("othersine.txt").then((value) {
-      _data = List();
+      _data = [];
       List<String> lines = value.split("\n");
       for (int i = 0; i < lines.length; i++) {
         var datas = lines[i].split("#");
@@ -154,7 +154,7 @@ class BarChartSineState extends BarActionState<BarChartSine> {
   void _initBarData(int count) {
     if (_data == null) return;
 
-    List<BarEntry> entries = List();
+    List<BarEntry> entries = [];
     for (int i = 0; i < count; i++) {
       entries.add(_data[i]);
     }
@@ -162,8 +162,8 @@ class BarChartSineState extends BarActionState<BarChartSine> {
     BarDataSet set = BarDataSet(entries, "Sinus Function");
     set.setColor1(Color.fromARGB(255, 240, 120, 124));
 
-    controller.data = BarData(List()..add(set));
-    controller.data
+    controller.data = BarData([]..add(set));
+    controller.data!
       ..setValueTextSize(10)
       ..setValueTypeface(Util.LIGHT)
       ..setDrawValues(false)
@@ -174,7 +174,7 @@ class BarChartSineState extends BarActionState<BarChartSine> {
 
   Widget _initBarChart() {
     var barChart = BarChart(controller);
-    controller.animator
+    controller.animator!
       ..reset()
       ..animateXY1(1500, 1500);
     return barChart;

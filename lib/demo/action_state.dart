@@ -110,31 +110,33 @@ abstract class SimpleActionState<T extends StatefulWidget>
   @override
   getBuilder() {
     return (BuildContext context) =>
-        <PopupMenuItem<String>>[item('View on GitHub', 'A')];
+        <PopupMenuItem<String>>[
+          const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+        ];
   }
 }
 
 abstract class LineActionState<T extends StatefulWidget>
     extends ActionState<T> {
-  LineChartController controller;
+  late LineChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Values', 'B'),
-          item('Toggle Icons', 'C'),
-          item('Toggle Filled', 'D'),
-          item('Toggle Circles', 'E'),
-          item('Toggle Cubic', 'F'),
-          item('Toggle Stepped', 'G'),
-          item('Toggle Horizontal Cubic', 'H'),
-          item('Toggle PinchZoom', 'I'),
-          item('Toggle Auto Scale', 'J'),
-          item('Toggle Highlight', 'K'),
-          item('Animate X', 'L'),
-          item('Animate Y', 'M'),
-          item('Animate XY', 'N'),
+          const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+          const PopupMenuItem(child: Text('Toggle Values'),value: 'B',),
+          const PopupMenuItem(child: Text('Toggle Icons'),value: 'C',),
+          const PopupMenuItem(child: Text('Toggle Filled'),value: 'D',),
+          const PopupMenuItem(child: Text('Toggle Circles'),value: 'E',),
+          const PopupMenuItem(child: Text('Toggle Cubic'),value: 'F',),
+          const PopupMenuItem(child: Text('Toggle Stepped'),value: 'G',),
+          const PopupMenuItem(child: Text('Toggle Horizontal Cubic'),value: 'H',),
+          const PopupMenuItem(child: Text('Toggle PinchZoom'),value: 'I',),
+          const PopupMenuItem(child: Text('Toggle Auto Scale'),value: 'J',),
+          const PopupMenuItem(child: Text('Toggle Highlight'),value: 'K',),
+          const PopupMenuItem(child: Text('Animate X'),value: 'L',),
+          const PopupMenuItem(child: Text('Animate Y'),value: 'M',),
+          const PopupMenuItem(child: Text('Animate XY'),value: 'N',),
         ];
   }
 
@@ -149,104 +151,104 @@ abstract class LineActionState<T extends StatefulWidget>
         Util.openGithub();
         break;
       case 'B':
-        List<ILineDataSet> sets = controller.data.dataSets;
-        for (ILineDataSet iSet in sets) {
+        List<ILineDataSet>? sets = controller.data!.dataSets;
+        for (ILineDataSet iSet in sets!) {
           LineDataSet set = iSet as LineDataSet;
           set.setDrawValues(!set.isDrawValuesEnabled());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        List<ILineDataSet> sets = controller.data.dataSets;
-        for (ILineDataSet iSet in sets) {
+        List<ILineDataSet>? sets = controller.data!.dataSets;
+        for (ILineDataSet iSet in sets!) {
           LineDataSet set = iSet as LineDataSet;
           set.setDrawIcons(!set.isDrawIconsEnabled());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        List<ILineDataSet> sets = controller.data.dataSets;
+        List<ILineDataSet>? sets = controller.data!.dataSets;
 
-        for (ILineDataSet iSet in sets) {
+        for (ILineDataSet iSet in sets!) {
           LineDataSet set = iSet as LineDataSet;
           if (set.isDrawFilledEnabled())
             set.setDrawFilled(false);
           else
             set.setDrawFilled(true);
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'E':
-        List<ILineDataSet> sets = controller.data.dataSets;
+        List<ILineDataSet>? sets = controller.data!.dataSets;
 
-        for (ILineDataSet iSet in sets) {
+        for (ILineDataSet iSet in sets!) {
           LineDataSet set = iSet as LineDataSet;
           if (set.isDrawCirclesEnabled())
             set.setDrawCircles(false);
           else
             set.setDrawCircles(true);
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'F':
-        List<ILineDataSet> sets = controller.data.dataSets;
+        List<ILineDataSet>? sets = controller.data!.dataSets;
 
-        for (ILineDataSet iSet in sets) {
+        for (ILineDataSet iSet in sets!) {
           LineDataSet set = iSet as LineDataSet;
           set.setMode(set.getMode() == Mode.CUBIC_BEZIER
               ? Mode.LINEAR
               : Mode.CUBIC_BEZIER);
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'G':
-        List<ILineDataSet> sets = controller.data.dataSets;
+        List<ILineDataSet>? sets = controller.data!.dataSets;
 
-        for (ILineDataSet iSet in sets) {
+        for (ILineDataSet iSet in sets!) {
           LineDataSet set = iSet as LineDataSet;
           set.setMode(
               set.getMode() == Mode.STEPPED ? Mode.LINEAR : Mode.STEPPED);
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'H':
-        List<ILineDataSet> sets = controller.data.dataSets;
+        List<ILineDataSet>? sets = controller.data!.dataSets;
 
-        for (ILineDataSet iSet in sets) {
+        for (ILineDataSet iSet in sets!) {
           LineDataSet set = iSet as LineDataSet;
           set.setMode(set.getMode() == Mode.HORIZONTAL_BEZIER
               ? Mode.LINEAR
               : Mode.HORIZONTAL_BEZIER);
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'I':
         controller.pinchZoomEnabled = !controller.pinchZoomEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'J':
         controller.autoScaleMinMaxEnabled = !controller.autoScaleMinMaxEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'K':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
-          controller.state.setStateIfNotDispose();
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
+          controller.state!.setStateIfNotDispose();
         }
         break;
       case 'L':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateX1(2000);
         break;
       case 'M':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateY2(2000, Easing.EaseInCubic);
         break;
       case 'N':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateXY1(2000, 2000);
         break;
@@ -255,21 +257,21 @@ abstract class LineActionState<T extends StatefulWidget>
 }
 
 abstract class BarActionState<T extends StatefulWidget> extends ActionState<T> {
-  BarChartController controller;
+  late BarChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Bar Borders', 'B'),
-          item('Toggle Values', 'C'),
-          item('Toggle Icons', 'D'),
-          item('Toggle Highlight', 'E'),
-          item('Toggle PinchZoom', 'F'),
-          item('Toggle Auto Scale', 'G'),
-          item('Animate X', 'H'),
-          item('Animate Y', 'I'),
-          item('Animate XY', 'J'),
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Bar Borders'),value: 'B',),
+      const PopupMenuItem(child: Text('Toggle Values'),value: 'C',),
+      const PopupMenuItem(child: Text('Toggle Icons'),value: 'D',),
+      const PopupMenuItem(child: Text('Toggle Highlight'),value: 'E',),
+      const PopupMenuItem(child: Text('Toggle PinchZoom'),value: 'F',),
+      const PopupMenuItem(child: Text('Toggle Auto Scale'),value: 'G',),
+      const PopupMenuItem(child: Text('Animate X'),value: 'H',),
+      const PopupMenuItem(child: Text('Animate Y'),value: 'I',),
+      const PopupMenuItem(child: Text('Animate XY'),value: 'J',),
         ];
   }
 
@@ -284,51 +286,51 @@ abstract class BarActionState<T extends StatefulWidget> extends ActionState<T> {
         Util.openGithub();
         break;
       case 'B':
-        for (IBarDataSet set in controller.data.dataSets)
+        for (IBarDataSet set in controller.data!.dataSets!)
           (set as BarDataSet)
               .setBarBorderWidth(set.getBarBorderWidth() == 1.0 ? 0.0 : 1.0);
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        List<IBarDataSet> sets = controller.data.dataSets;
+        List<IBarDataSet> sets = controller.data!.dataSets!;
         for (IBarDataSet iSet in sets) {
           BarDataSet set = iSet as BarDataSet;
           set.setDrawIcons(!set.isDrawIconsEnabled());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'E':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
-          controller.state.setStateIfNotDispose();
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
+          controller.state!.setStateIfNotDispose();
         }
         break;
       case 'F':
         controller.pinchZoomEnabled = !controller.pinchZoomEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'G':
         controller.autoScaleMinMaxEnabled = !controller.autoScaleMinMaxEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'H':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateX1(2000);
         break;
       case 'I':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateY1(2000);
         break;
       case 'J':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateXY1(2000, 2000);
         break;
@@ -338,21 +340,21 @@ abstract class BarActionState<T extends StatefulWidget> extends ActionState<T> {
 
 abstract class HorizontalBarActionState<T extends StatefulWidget>
     extends ActionState<T> {
-  HorizontalBarChartController controller;
+  late HorizontalBarChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Bar Borders', 'B'),
-          item('Toggle Values', 'C'),
-          item('Toggle Icons', 'D'),
-          item('Toggle Highlight', 'E'),
-          item('Toggle PinchZoom', 'F'),
-          item('Toggle Auto Scale', 'G'),
-          item('Animate X', 'H'),
-          item('Animate Y', 'I'),
-          item('Animate XY', 'J'),
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Bar Borders'),value: 'B',),
+      const PopupMenuItem(child: Text('Toggle Values'),value: 'C',),
+      const PopupMenuItem(child: Text('Toggle Icons'),value: 'D',),
+      const PopupMenuItem(child: Text('Toggle Highlight'),value: 'E',),
+      const PopupMenuItem(child: Text('Toggle PinchZoom'),value: 'F',),
+      const PopupMenuItem(child: Text('Toggle Auto Scale'),value: 'G',),
+      const PopupMenuItem(child: Text('Animate X'),value: 'H',),
+      const PopupMenuItem(child: Text('Animate Y'),value: 'I',),
+      const PopupMenuItem(child: Text('Animate XY'),value: 'J',),
         ];
   }
 
@@ -367,51 +369,51 @@ abstract class HorizontalBarActionState<T extends StatefulWidget>
         Util.openGithub();
         break;
       case 'B':
-        for (IBarDataSet set in controller.data.dataSets)
+        for (IBarDataSet set in controller.data!.dataSets!)
           (set as BarDataSet)
               .setBarBorderWidth(set.getBarBorderWidth() == 1.0 ? 0.0 : 1.0);
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        List<IBarDataSet> sets = controller.data.dataSets;
+        List<IBarDataSet> sets = controller.data!.dataSets!;
         for (IBarDataSet iSet in sets) {
           BarDataSet set = iSet as BarDataSet;
           set.setDrawIcons(!set.isDrawIconsEnabled());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'E':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
-          controller.state.setStateIfNotDispose();
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
+          controller.state!.setStateIfNotDispose();
         }
         break;
       case 'F':
         controller.pinchZoomEnabled = !controller.pinchZoomEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'G':
         controller.autoScaleMinMaxEnabled = !controller.autoScaleMinMaxEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'H':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateX1(2000);
         break;
       case 'I':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateY1(2000);
         break;
       case 'J':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateXY1(2000, 2000);
         break;
@@ -420,24 +422,24 @@ abstract class HorizontalBarActionState<T extends StatefulWidget>
 }
 
 abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
-  PieChartController controller;
+  late PieChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Y-Values', 'B'),
-          item('Toggle X-Values', 'C'),
-          item('Toggle Icons', 'D'),
-          item('Toggle Percent', 'E'),
-          item('Toggle Minimum Angles', 'F'),
-          item('Toggle Hole', 'G'),
-          item('Toggle Curved Slices Cubic', 'H'),
-          item('Draw Center Text', 'I'),
-          item('Spin Animation', 'J'),
-          item('Animate X', 'K'),
-          item('Animate Y', 'L'),
-          item('Animate XY', 'M'),
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Y-Values'),value: 'B',),
+      const PopupMenuItem(child: Text('Toggle X-Values'),value: 'C',),
+      const PopupMenuItem(child: Text('Toggle Icons'),value: 'D',),
+      const PopupMenuItem(child: Text('Toggle Percent'),value: 'E',),
+      const PopupMenuItem(child: Text('Toggle Minimum Angles'),value: 'F',),
+      const PopupMenuItem(child: Text('Toggle Hole'),value: 'G',),
+      const PopupMenuItem(child: Text('Toggle Curved Slices Cubic'),value: 'H',),
+      const PopupMenuItem(child: Text('Draw Center Text'),value: 'I',),
+      const PopupMenuItem(child: Text('Spin Animation'),value: 'J',),
+      const PopupMenuItem(child: Text('Animate X'),value: 'K',),
+      const PopupMenuItem(child: Text('Animate Y'),value: 'L',),
+      const PopupMenuItem(child: Text('Animate XY'),value: 'M',),
         ];
   }
 
@@ -452,22 +454,22 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
         Util.openGithub();
         break;
       case 'B':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
         controller.drawEntryLabels = !controller.drawEntryLabels;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'E':
         controller.usePercentValues = !controller.usePercentValues;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'F':
         if (controller.minAngleForSlices == 0) {
@@ -475,11 +477,11 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
         } else {
           controller.minAngleForSlices = 0;
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'G':
         controller.drawHole = !controller.drawHole;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'H':
         bool toSet = !controller.drawRoundedSlices || !controller.drawHole;
@@ -490,30 +492,30 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
         if (toSet && controller.drawSlicesUnderHole) {
           controller.drawSlicesUnderHole = false;
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'I':
         controller.drawCenterText = !controller.drawCenterText;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'J':
-        controller.animator
+        controller.animator!
           ..reset()
           ..spin(2000, controller.rotationAngle, controller.rotationAngle + 360,
               Easing.EaseInOutCubic);
         break;
       case 'K':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateX1(1400);
         break;
       case 'L':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateY1(1400);
         break;
       case 'M':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateXY1(1400, 1400);
         break;
@@ -523,16 +525,16 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
 
 abstract class CombinedActionState<T extends StatefulWidget>
     extends ActionState<T> {
-  CombinedChartController controller;
+  late CombinedChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Line Values', 'B'),
-          item('Toggle Bar Values', 'C'),
-          item('Remove Data Set', 'D'),
-          item('Set Y Range Test', 'E')
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Line Values'),value: 'B',),
+      const PopupMenuItem(child: Text('Toggle Bar Values'),value: 'C',),
+      const PopupMenuItem(child: Text('Remove Data Set'),value: 'D',),
+      const PopupMenuItem(child: Text('Set Y Range Test'),value: 'E',),
         ];
   }
 
@@ -547,30 +549,30 @@ abstract class CombinedActionState<T extends StatefulWidget>
         Util.openGithub();
         break;
       case 'B':
-        for (IDataSet set in controller.data.dataSets) {
+        for (IDataSet set in controller.data!.dataSets!) {
           if (set is LineDataSet) set.setDrawValues(!set.isDrawValuesEnabled());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets) {
+        for (IDataSet set in controller.data!.dataSets!) {
           if (set is BarDataSet) set.setDrawValues(!set.isDrawValuesEnabled());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        if (controller.data.getDataSetCount() > 1) {
-          int rnd = _getRandom(controller.data.getDataSetCount().toDouble(), 0)
+        if (controller.data!.getDataSetCount() > 1) {
+          int rnd = _getRandom(controller.data!.getDataSetCount().toDouble(), 0)
               .toInt();
-          controller.data
-              .removeDataSet1(controller.data.getDataSetByIndex(rnd));
-          controller.data.notifyDataChanged();
-          controller.state.setStateIfNotDispose();
+          controller.data!
+              .removeDataSet1(controller.data!.getDataSetByIndex(rnd)!);
+          controller.data!.notifyDataChanged();
+          controller.state!.setStateIfNotDispose();
         }
         break;
       case 'E':
         controller.setVisibleYRangeMaximum(100, AxisDependency.LEFT);
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
     }
   }
@@ -582,20 +584,20 @@ abstract class CombinedActionState<T extends StatefulWidget>
 
 abstract class ScatterActionState<T extends StatefulWidget>
     extends ActionState<T> {
-  ScatterChartController controller;
+  late ScatterChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Values', 'B'),
-          item('Toggle Icons', 'C'),
-          item('Toggle Highlight', 'D'),
-          item('Animate X', 'E'),
-          item('Animate Y', 'F'),
-          item('Animate XY', 'G'),
-          item('Toggle PinchZoom', 'H'),
-          item('Toggle Auto Scale', 'I'),
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Values'),value: 'B',),
+      const PopupMenuItem(child: Text('Toggle Icons'),value: 'C',),
+      const PopupMenuItem(child: Text('Toggle Highlight'),value: 'D',),
+      const PopupMenuItem(child: Text('Animate X'),value: 'E',),
+      const PopupMenuItem(child: Text('Animate Y'),value: 'F',),
+      const PopupMenuItem(child: Text('Animate XY'),value: 'G',),
+      const PopupMenuItem(child: Text('Toggle PinchZoom'),value: 'H',),
+      const PopupMenuItem(child: Text('Toggle Auto Scale'),value: 'I',),
         ];
   }
 
@@ -610,47 +612,47 @@ abstract class ScatterActionState<T extends StatefulWidget>
         Util.openGithub();
         break;
       case 'B':
-        List<IScatterDataSet> sets = controller.data.dataSets;
-        for (IScatterDataSet iSet in sets) {
+        List<IScatterDataSet>? sets = controller.data!.dataSets;
+        for (IScatterDataSet iSet in sets!) {
           ScatterDataSet set = iSet as ScatterDataSet;
           set.setDrawValues(!set.isDrawValuesEnabled());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
-          controller.state.setStateIfNotDispose();
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
+          controller.state!.setStateIfNotDispose();
         }
         break;
       case 'E':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateX1(3000);
         break;
       case 'F':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateY1(3000);
         break;
       case 'G':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateXY1(3000, 3000);
         break;
       case 'H':
         controller.pinchZoomEnabled = !controller.pinchZoomEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'I':
         controller.autoScaleMinMaxEnabled = !controller.autoScaleMinMaxEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
     }
   }
@@ -658,20 +660,20 @@ abstract class ScatterActionState<T extends StatefulWidget>
 
 abstract class BubbleActionState<T extends StatefulWidget>
     extends ActionState<T> {
-  BubbleChartController controller;
+  late BubbleChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Values', 'B'),
-          item('Toggle Icons', 'C'),
-          item('Toggle Highlight', 'D'),
-          item('Toggle PinchZoom', 'H'),
-          item('Toggle Auto Scale', 'I'),
-          item('Animate X', 'E'),
-          item('Animate Y', 'F'),
-          item('Animate XY', 'G'),
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Values'),value: 'B',),
+      const PopupMenuItem(child: Text('Toggle Icons'),value: 'C',),
+      const PopupMenuItem(child: Text('Toggle Highlight'),value: 'D',),
+      const PopupMenuItem(child: Text('Toggle PinchZoom'),value: 'H',),
+      const PopupMenuItem(child: Text('Toggle Auto Scale'),value: 'I',),
+      const PopupMenuItem(child: Text('Animate X'),value: 'E',),
+      const PopupMenuItem(child: Text('Animate Y'),value: 'F',),
+      const PopupMenuItem(child: Text('Animate XY'),value: 'G',),
         ];
   }
 
@@ -686,44 +688,44 @@ abstract class BubbleActionState<T extends StatefulWidget>
         Util.openGithub();
         break;
       case 'B':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
-          controller.state.setStateIfNotDispose();
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
+          controller.state!.setStateIfNotDispose();
         }
         break;
       case 'E':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateX1(2000);
         break;
       case 'F':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateY1(2000);
         break;
       case 'G':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateXY1(2000, 2000);
         break;
       case 'H':
         controller.pinchZoomEnabled = !controller.pinchZoomEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'I':
         controller.autoScaleMinMaxEnabled = !controller.autoScaleMinMaxEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
     }
   }
@@ -731,22 +733,22 @@ abstract class BubbleActionState<T extends StatefulWidget>
 
 abstract class CandlestickActionState<T extends StatefulWidget>
     extends ActionState<T> {
-  CandlestickChartController controller;
+  late CandlestickChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Values', 'B'),
-          item('Toggle Icons', 'C'),
-          item('Toggle Highlight', 'D'),
-          item('Toggle Shadow Color', 'K'),
-          item('Toggle PinchZoom', 'H'),
-          item('Toggle Auto Scale', 'I'),
-          item('Animate X', 'E'),
-          item('Animate Y', 'F'),
-          item('Animate XY', 'G'),
-        ];
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Values'),value: 'B',),
+      const PopupMenuItem(child: Text('Toggle Icons'),value: 'C',),
+      const PopupMenuItem(child: Text('Toggle Highlight'),value: 'D',),
+      const PopupMenuItem(child: Text('Toggle Shadow Color'),value: 'K',),
+      const PopupMenuItem(child: Text('Toggle PinchZoom'),value: 'H',),
+      const PopupMenuItem(child: Text('Toggle Auto Scale'),value: 'I',),
+      const PopupMenuItem(child: Text('Animate X'),value: 'E',),
+      const PopupMenuItem(child: Text('Animate Y'),value: 'F',),
+      const PopupMenuItem(child: Text('Animate XY'),value: 'G',),
+    ];
   }
 
   @override
@@ -760,51 +762,51 @@ abstract class CandlestickActionState<T extends StatefulWidget>
         Util.openGithub();
         break;
       case 'B':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
-          controller.state.setStateIfNotDispose();
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
+          controller.state!.setStateIfNotDispose();
         }
         break;
       case 'E':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateX1(2000);
         break;
       case 'F':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateY1(2000);
         break;
       case 'G':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateXY1(2000, 2000);
         break;
       case 'H':
         controller.pinchZoomEnabled = !controller.pinchZoomEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'I':
         controller.autoScaleMinMaxEnabled = !controller.autoScaleMinMaxEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'J':
-        for (ICandleDataSet set in controller.data.dataSets) {
+        for (ICandleDataSet set in controller.data!.dataSets!) {
           (set as CandleDataSet)
               .setShadowColorSameAsCandle(!set.getShadowColorSameAsCandle());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
     }
   }
@@ -812,24 +814,24 @@ abstract class CandlestickActionState<T extends StatefulWidget>
 
 abstract class RadarActionState<T extends StatefulWidget>
     extends ActionState<T> {
-  RadarChartController controller;
+  late RadarChartController controller;
 
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Toggle Values', 'B'),
-          item('Toggle Icons', 'C'),
-          item('Toggle Filled', 'D'),
-          item('Toggle Highlight', 'E'),
-          item('Toggle Highlight Circle', 'F'),
-          item('Toggle Rotation', 'G'),
-          item('Toggle Y-Values', 'H'),
-          item('Toggle X-Values', 'I'),
-          item('Spin Animation', 'J'),
-          item('Animate X', 'K'),
-          item('Animate Y', 'L'),
-          item('Animate XY', 'M'),
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Values'),value: 'B',),
+      const PopupMenuItem(child: Text('Toggle Icons'),value: 'C',),
+      const PopupMenuItem(child: Text('Toggle Filled'),value: 'D',),
+      const PopupMenuItem(child: Text('Toggle Highlight'),value: 'E',),
+      const PopupMenuItem(child: Text('Toggle Highlight Circle'),value: 'F',),
+      const PopupMenuItem(child: Text('Toggle Rotation'),value: 'G',),
+      const PopupMenuItem(child: Text('Toggle Y-Values'),value: 'H',),
+      const PopupMenuItem(child: Text('Toggle X-Values'),value: 'I',),
+      const PopupMenuItem(child: Text('Spin Animation'),value: 'J',),
+      const PopupMenuItem(child: Text('Animate X'),value: 'K',),
+      const PopupMenuItem(child: Text('Animate Y'),value: 'L',),
+      const PopupMenuItem(child: Text('Animate XY'),value: 'M',),
         ];
   }
 
@@ -844,70 +846,70 @@ abstract class RadarActionState<T extends StatefulWidget>
         Util.openGithub();
         break;
       case 'B':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        List<IRadarDataSet> sets = controller.data.dataSets;
-        for (IRadarDataSet set in sets) {
+        List<IRadarDataSet>? sets = controller.data!.dataSets;
+        for (IRadarDataSet set in sets!) {
           if (set.isDrawFilledEnabled())
             set.setDrawFilled(false);
           else
             set.setDrawFilled(true);
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'E':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
-          controller.state.setStateIfNotDispose();
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
+          controller.state!.setStateIfNotDispose();
         }
         break;
       case 'F':
-        List<IRadarDataSet> sets = controller.data.dataSets;
-        for (IRadarDataSet set in sets) {
+        List<IRadarDataSet>? sets = controller.data!.dataSets;
+        for (IRadarDataSet set in sets!) {
           set.setDrawHighlightCircleEnabled(
               !set.isDrawHighlightCircleEnabled());
         }
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'G':
-        controller.rotateEnabled = !controller.rotateEnabled;
-        controller.state.setStateIfNotDispose();
+        controller.rotateEnabled = controller.rotateEnabled;
+        controller.state!.setStateIfNotDispose();
         break;
       case 'H':
-        controller.yAxis.enabled = !controller.yAxis.enabled;
-        controller.state.setStateIfNotDispose();
+        controller.yAxis!.enabled = controller.yAxis!.enabled;
+        controller.state!.setStateIfNotDispose();
         break;
       case 'I':
-        controller.xAxis.enabled = !controller.xAxis.enabled;
-        controller.state.setStateIfNotDispose();
+        controller.xAxis!.enabled = controller.xAxis!.enabled;
+        controller.state!.setStateIfNotDispose();
         break;
       case 'J':
-        controller.animator
+        controller.animator!
           ..reset()
           ..spin(2000, controller.rotationAngle, controller.rotationAngle + 360,
               Easing.EaseInOutCubic);
         break;
       case 'K':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateX1(1400);
         break;
       case 'L':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateY1(1400);
         break;
       case 'M':
-        controller.animator
+        controller.animator!
           ..reset()
           ..animateXY1(1400, 1400);
         break;

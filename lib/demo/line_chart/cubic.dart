@@ -145,7 +145,7 @@ class LineChartCubicState extends LineActionState<LineChartCubic> {
           legend.enabled = (false);
           var data = (controller as LineChartController).data;
           if (data != null) {
-            var formatter = data.getDataSetByIndex(0).getFillFormatter();
+            var formatter = data.getDataSetByIndex(0)!.getFillFormatter();
             if (formatter is A) {
               formatter.setPainter(controller);
             }
@@ -167,7 +167,7 @@ class LineChartCubicState extends LineActionState<LineChartCubic> {
 
   void _initLineData(int count, double range) async {
     var img = await ImageLoader.loadImage('assets/img/star.png');
-    List<Entry> values = List();
+    List<Entry> values = [];
 
     for (int i = 0; i < count; i++) {
       double val = (random.nextDouble() * (range + 1)) + 20;
@@ -193,7 +193,7 @@ class LineChartCubicState extends LineActionState<LineChartCubic> {
     set1.setFillFormatter(A());
 
     // create a data object with the data sets
-    controller.data = LineData.fromList(List()..add(set1))
+    controller.data = LineData.fromList([]..add(set1))
       ..setValueTypeface(Util.LIGHT)
       ..setValueTextSize(9)
       ..setDrawValues(false);
@@ -203,7 +203,7 @@ class LineChartCubicState extends LineActionState<LineChartCubic> {
 
   Widget _initLineChart() {
     var lineChart = LineChart(controller);
-    controller.animator
+    controller.animator!
       ..reset()
       ..animateXY1(2000, 2000);
     return lineChart;
@@ -211,15 +211,15 @@ class LineChartCubicState extends LineActionState<LineChartCubic> {
 }
 
 class A implements IFillFormatter {
-  LineChartController _controller;
+  late LineChartController _controller;
 
   void setPainter(LineChartController controller) {
     _controller = controller;
   }
 
   @override
-  double getFillLinePosition(
-      ILineDataSet dataSet, LineDataProvider dataProvider) {
+  double? getFillLinePosition(
+      ILineDataSet dataSet, LineDataProvider? dataProvider) {
     return _controller?.painter?.axisLeft?.axisMinimum;
   }
 }

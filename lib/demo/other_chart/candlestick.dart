@@ -161,7 +161,7 @@ class OtherChartCandlestickState
     var img = await ImageLoader.loadImage('assets/img/star.png');
 //    chart.resetTracking();
 
-    List<CandleEntry> values = List();
+    List<CandleEntry> values = [];
 
     for (int i = 0; i < count; i++) {
       double multi = (range + 1);
@@ -198,7 +198,7 @@ class OtherChartCandlestickState
     set1.setNeutralColor(ColorUtils.BLUE);
     //set1.setHighlightLineWidth(1f);
 
-    controller.data = CandleData.fromList(List()..add(set1));
+    controller.data = CandleData.fromList([]..add(set1));
 
     setState(() {});
   }

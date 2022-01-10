@@ -96,7 +96,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -152,9 +152,9 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           PopupMenuButton<String>(
             itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-                  _item('View on GitHub', 'A'),
-                  _item('Problem Report', 'B'),
-                  _item('Developer Website', 'C'),
+              const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+              const PopupMenuItem(child: Text('Problem Report'),value: 'B',),
+              const PopupMenuItem(child: Text('Developer Website'),value: 'C',),
                 ],
             onSelected: (String action) {
               _itemClick(action);

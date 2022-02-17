@@ -136,7 +136,7 @@ class BarChartHorizontalState
     var img = await ImageLoader.loadImage('assets/img/star.png');
     double barWidth = 9;
     double spaceForBar = 10;
-    List<BarEntry> values = List();
+    List<BarEntry> values = [];
 
     for (int i = 0; i < count; i++) {
       double val = random.nextDouble() * range;
@@ -149,11 +149,11 @@ class BarChartHorizontalState
 
     set1.setDrawIcons(false);
 
-    List<IBarDataSet> dataSets = List();
+    List<IBarDataSet> dataSets = [];
     dataSets.add(set1);
 
     controller.data = BarData(dataSets);
-    controller.data
+    controller.data!
       ..setValueTextSize(10)
       ..setValueTypeface(Util.LIGHT)
       ..barWidth = barWidth;
@@ -241,7 +241,7 @@ class BarChartHorizontalState
 
   Widget _initBarChart() {
     var barChart = HorizontalBarChart(controller);
-    controller.animator
+    controller.animator!
       ..reset()
       ..animateY1(2500);
     return barChart;

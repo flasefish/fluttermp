@@ -292,7 +292,7 @@ class LineChartRenderer extends LineRadarRenderer {
 
   void drawCubicFill(Canvas c, ILineDataSet dataSet, Path spline,
       Transformer trans, XBounds bounds) {
-    double fillMin =
+    double? fillMin =
         dataSet.getFillFormatter().getFillLinePosition(dataSet, _provider);
 
     List<double?> list = [];
@@ -515,7 +515,7 @@ class LineChartRenderer extends LineRadarRenderer {
   /// @return
   void generateFilledPath(final ILineDataSet dataSet, final int startIndex,
       final int endIndex, final Path outputPath, final Transformer trans) {
-    final double fillMin =
+    final double? fillMin =
         dataSet.getFillFormatter().getFillLinePosition(dataSet, _provider);
     final double phaseY = animator!.getPhaseY();
     final bool isDrawSteppedEnabled = dataSet.getMode() == Mode.STEPPED;

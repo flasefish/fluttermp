@@ -169,14 +169,14 @@ class OtherChartScatterPlotState
   }
 
   void _initScatterData(int count, double range) async {
-    List<ui.Image> imgs = List(3);
+    List<ui.Image?> imgs = List.filled(3,null);
     imgs[0] = await ImageLoader.loadImage('assets/img/star.png');
     imgs[1] = await ImageLoader.loadImage('assets/img/add.png');
     imgs[2] = await ImageLoader.loadImage('assets/img/close.png');
 
-    List<Entry> values1 = List();
-    List<Entry> values2 = List();
-    List<Entry> values3 = List();
+    List<Entry> values1 = [];
+    List<Entry> values2 = [];
+    List<Entry> values3 = [];
 
     for (int i = 0; i < count; i++) {
       double val = (random.nextDouble() * range) + 3;
@@ -210,14 +210,14 @@ class OtherChartScatterPlotState
     set2.setScatterShapeSize(8);
     set3.setScatterShapeSize(8);
 
-    List<IScatterDataSet> dataSets = List();
+    List<IScatterDataSet> dataSets = [];
     dataSets.add(set1); // add the data sets
     dataSets.add(set2);
     dataSets.add(set3);
 
     // create a data object with the data sets
     controller.data = ScatterData.fromList(dataSets);
-    controller.data.setValueTypeface(Util.LIGHT);
+    controller.data!.setValueTypeface(Util.LIGHT);
 
     setState(() {});
   }
@@ -238,7 +238,7 @@ class CustomScatterShapeRenderer implements IShapeRenderer {
       double posX,
       double posY,
       Paint renderPaint) {
-    final double shapeHalf = dataSet.getScatterShapeSize() / 2;
+    final double shapeHalf = dataSet.getScatterShapeSize()! / 2;
 
     c.drawLine(Offset(posX - shapeHalf, posY - shapeHalf),
         Offset(posX + shapeHalf, posY + shapeHalf), renderPaint);

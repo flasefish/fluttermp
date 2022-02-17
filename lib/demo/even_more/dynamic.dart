@@ -25,7 +25,7 @@ class EvenMoreDynamic extends StatefulWidget {
 
 class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
     implements OnChartValueSelectedListener {
-  LineChartController controller;
+  late LineChartController controller;
 
   @override
   void initState() {
@@ -51,13 +51,13 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
-          item('Add Entry', 'B'),
-          item('Remove Entry', 'C'),
-          item('Add Data Set', 'D'),
-          item('Remove Data Set', 'E'),
-          item('Clear chart', 'F'),
-        ];
+      const PopupMenuItem(child: Text('View on GitHub'),value: 'A',),
+      const PopupMenuItem(child: Text('Toggle Add Entry'),value: 'B',),
+      const PopupMenuItem(child: Text('Remove Entry'),value: 'C',),
+      const PopupMenuItem(child: Text('Add Data Set'),value: 'D',),
+      const PopupMenuItem(child: Text('Remove Data Set'),value: 'E',),
+      const PopupMenuItem(child: Text('Clear chart'),value: 'F',),
+    ];
   }
 
   @override
@@ -77,23 +77,23 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
         break;
       case 'B':
         _addEntry();
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'C':
         _removeLastEntry();
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'D':
         _addDataSet();
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'E':
         _removeDataSet();
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
       case 'F':
         controller.data = null;
-        controller.state.setStateIfNotDispose();
+        controller.state!.setStateIfNotDispose();
         break;
     }
   }
@@ -124,14 +124,14 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
   var random = Random(1);
 
   void _addEntry() {
-    LineData data = controller?.data;
+    LineData? data = controller.data;
 
     if (data == null) {
       data = LineData();
       controller.data = data;
     }
 
-    ILineDataSet set = data.getDataSetByIndex(0);
+    ILineDataSet? set = data.getDataSetByIndex(0);
     // set.addEntry(...); // can be called as well
 
     if (set == null) {
@@ -142,7 +142,7 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
     // choose a random dataSet
     int randomDataSetIndex =
         (random.nextDouble() * data.getDataSetCount()).toInt();
-    ILineDataSet randomSet = data.getDataSetByIndex(randomDataSetIndex);
+    ILineDataSet? randomSet = data.getDataSetByIndex(randomDataSetIndex);
     double value = (random.nextDouble() * 50) + 50 * (randomDataSetIndex + 1);
 
 
@@ -151,7 +151,7 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
 //    data.addEntryByIndex(0, Entry(x: x, y: value),
 //        randomDataSetIndex);
 
-    data.addEntry(Entry(x: randomSet.getEntryCount().toDouble(), y: value),
+    data.addEntry(Entry(x: randomSet!.getEntryCount().toDouble(), y: value),
         randomDataSetIndex);
     data.notifyDataChanged();
 
@@ -162,7 +162,7 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
   }
 
   LineDataSet _createSet() {
-    LineDataSet set = LineDataSet(null, "DataSet 1");
+    LineDataSet set = LineDataSet([], "DataSet 1");
     set.setLineWidth(2.5);
     set.setCircleRadius(4.5);
     set.setColor1(Color.fromARGB(255, 240, 99, 99));
@@ -174,25 +174,25 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
   }
 
   void _removeLastEntry() {
-    LineData data = controller?.data;
+    LineData? data = controller?.data;
     if (data != null) {
-      ILineDataSet set = data.getDataSetByIndex(0);
+      ILineDataSet? set = data.getDataSetByIndex(0);
       if (set != null) {
-        Entry e = set.getEntryForXValue2(
+        Entry? e = set.getEntryForXValue2(
             (set.getEntryCount() - 1).toDouble(), double.nan);
-        data.removeEntry1(e, 0);
+        data.removeEntry1(e!, 0);
       }
     }
   }
 
   void _addDataSet() {
-    LineData data = controller?.data;
+    LineData? data = controller?.data;
     if (data == null) {
       controller.data = LineData();
     } else {
       int count = (data.getDataSetCount() + 1);
-      int amount = data.getDataSetByIndex(0).getEntryCount();
-      List<Entry> values = List();
+      int amount = data.getDataSetByIndex(0)!.getEntryCount();
+      List<Entry> values = [];
       for (int i = 0; i < amount; i++) {
         values.add(new Entry(
             x: i.toDouble(), y: (random.nextDouble() * 50) + 50 * count));
@@ -211,9 +211,9 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
   }
 
   void _removeDataSet() {
-    LineData data = controller.data;
+    LineData? data = controller.data;
     if (data != null) {
-      data.removeDataSet1(data.getDataSetByIndex(data.getDataSetCount() - 1));
+      data.removeDataSet1(data.getDataSetByIndex(data.getDataSetCount() - 1)!);
     }
   }
 }

@@ -146,7 +146,7 @@ class EvenMoreHourlyState extends LineActionState<EvenMoreHourly> {
     // now in hours
     int now = Util.currentTimeMillis();
 
-    List<Entry> values = List();
+    List<Entry> values = [];
 
     // count = hours
     double to = now + count;
@@ -171,8 +171,8 @@ class EvenMoreHourlyState extends LineActionState<EvenMoreHourly> {
     set1.setDrawCircleHole(false);
 
     // create a data object with the data sets
-    controller.data = LineData.fromList(List()..add(set1));
-    controller.data
+    controller.data = LineData.fromList([]..add(set1));
+    controller.data!
       ..setValueTextColor(ColorUtils.getHoloBlue())
       ..setValueTextSize(9);
 
@@ -188,7 +188,7 @@ class A extends ValueFormatter {
   final intl.DateFormat mFormat = intl.DateFormat("dd MMM HH:mm");
 
   @override
-  String getFormattedValue1(double value) {
+  String getFormattedValue1(double? value) {
     return mFormat.format(DateTime.now());
   }
 }

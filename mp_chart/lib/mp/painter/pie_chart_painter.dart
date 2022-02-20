@@ -39,7 +39,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
   final bool _drawRoundedSlices; // = false
 
   /// variable for the text that is drawn in the center of the pie-chart
-  final String? _centerText; // = ""
+  final String _centerText; // = ""
 
   /// indicates the size of the hole in the center of the piechart, default:
   /// radius / 2
@@ -118,7 +118,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
       bool drawSlicesUnderHole,
       bool usePercentValues,
       bool drawRoundedSlices,
-      String? centerText,
+      String centerText,
       double centerTextOffsetX,
       double centerTextOffsetY,
       TypeFace? entryLabelTypeface,
@@ -444,7 +444,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
   /// returns the text that is drawn in the center of the pie-chart
   ///
   /// @return
-  String? getCenterText() {
+  String getCenterText() {
     return _centerText;
   }
 

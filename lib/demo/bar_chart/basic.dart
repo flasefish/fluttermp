@@ -282,7 +282,7 @@ class BarChartBasicState extends BarActionState<BarChartBasic>
 class MyChartTransListener with ChartTransListener {
   @override
   void scale(double scaleX, double scaleY, double? x, double? y) {
-    print("scale scaleX: $scaleX, scaleY: $scaleY, x: $x, y: $y");
+    //print("scale scaleX: $scaleX, scaleY: $scaleY, x: $x, y: $y");
   }
 
   @override

@@ -17,7 +17,7 @@ class PieChartController extends PieRadarController<PieChartPainter> {
   bool drawSlicesUnderHole;
   bool usePercentValues;
   bool drawRoundedSlices;
-  String? centerText;
+  String centerText;
   double holeRadiusPercent; // = 50
   double transparentCircleRadiusPercent; //= 55
   bool drawCenterText; // = true

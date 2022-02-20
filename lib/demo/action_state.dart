@@ -75,7 +75,7 @@ abstract class ActionState<T extends StatefulWidget> extends State<T> {
   PopupMenuItemBuilder<String> getBuilder();
 
   void captureImg(CaptureCallback callback) {
-    PermissionHandler()
+  /*  PermissionHandler()
         .checkPermissionStatus(PermissionGroup.storage)
         .then((permission) {
       if (permission.value != PermissionStatus.granted.value) {
@@ -94,7 +94,7 @@ abstract class ActionState<T extends StatefulWidget> extends State<T> {
       } else {
         callback();
       }
-    });
+    });*/
   }
 }
 

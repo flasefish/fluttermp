@@ -786,7 +786,7 @@ class PieChartRenderer extends DataRenderer {
   /// draws the description text in the center of the pie chart makes most
   /// sense when center-hole is enabled
   void drawCenterText(Canvas c) {
-    String? centerText = _painter!.getCenterText();
+    String centerText = _painter!.getCenterText();
 
     if (_painter!.isDrawCenterTextEnabled() && centerText != null) {
       MPPointF center = _painter!.getCenterCircleBox();
@@ -795,10 +795,17 @@ class PieChartRenderer extends DataRenderer {
       double x = center.x + offset.x;
       double y = center.y + offset.y;
 
-      double innerRadius = _painter!.isDrawHoleEnabled() &&
-              !_painter!.isDrawSlicesUnderHoleEnabled()
-          ? _painter!.getRadius() * (_painter!.getHoleRadius()! / 100)
-          : _painter!.getRadius();
+      double? innerRadius;
+      if(_painter!.isDrawHoleEnabled()){
+        innerRadius = 0;
+      }else{
+        innerRadius = 1;
+      }
+
+    /*  double innerRadius = _painter!.isDrawHoleEnabled() &&
+              _painter!.isDrawSlicesUnderHoleEnabled()!
+          ? _painter!.getRadius()! * (_painter!.getHoleRadius()! / 100)
+          // : _painter!.getRadius()!;*/
 
       _rectBuffer[0] = Rect.fromLTRB(
           x - innerRadius, y - innerRadius, x + innerRadius, y + innerRadius);
